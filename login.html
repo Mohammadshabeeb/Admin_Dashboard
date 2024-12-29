@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+
+
+html{
+    height: 100%;
+}
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #007bff, #63ff90);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      margin: 0;
+      color: #ffffff;
+    }
+    .login-container {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    .login-container img {
+      width: 150px;
+      margin-bottom: 15px;
+    }
+    .login-container h2 {
+      margin-bottom: 20px;
+      color: #333333;
+    }
+    .login-container form {
+      display: flex;
+      flex-direction: column;
+    }
+    .login-container label {
+      margin-bottom: 5px;
+      text-align: left;
+      color: #555555;
+    }
+    .login-container input {
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #dddddd;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    .login-container .default-credentials {
+      font-size: 12px;
+      color: #888888;
+      margin-bottom: 15px;
+    }
+    .login-container button {
+      padding: 12px;
+      background: linear-gradient(to bottom right, #007bff, #63ff90);
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .login-container button:hover {
+      background: #0056b3;
+      transform: scale(1.05);
+    }
+    .login-container footer {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #aaaaaa;
+    }
+
+
+
+     @media (max-width: 768px) {
+      .login-container {
+        padding: 20px;
+        border-radius: 10px;
+      }
+      .login-container img {
+        width: 80px;
+      }
+      .login-container h2 {
+        font-size: 20px;
+      }
+      .login-container input {
+        font-size: 14px;
+        padding: 10px;
+      }
+      .login-container button {
+        font-size: 14px;
+        padding: 10px;
+      }
+      .login-container footer {
+        font-size: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .login-container {
+        width: 90%;
+        padding: 15px;
+      }
+      .login-container img {
+        width: 70px;
+      }
+      .login-container h2 {
+        font-size: 18px;
+      }
+      .login-container input {
+        font-size: 12px;
+        padding: 8px;
+      }
+      .login-container button {
+        font-size: 12px;
+        padding: 8px;
+      }
+      .login-container footer {
+        font-size: 9px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <img src="assets/img/logo.png" alt="Company Logo">
+    
+    <h2>Welcome Back</h2>
+    <form id="loginForm">
+      <label for="username">Username</label>
+      <input type="text" id="username" placeholder="Enter your username">
+      
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter your password">
+      
+      <div class="default-credentials">
+        Default Username: <b>admin</b><br>
+        Default Password: <b>admin123</b>
+      </div>
+      
+      <button type="submit">Login</button>
+    </form>
+    
+    <footer>© 2024 Doctosmart. All rights reserved.</footer>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+
+      if (username === "admin" && password === "admin123") {
+        Swal.fire({
+          icon: 'success',
+          title: 'Login Successful',
+          text: 'Welcome to your dashboard!',
+          confirmButtonText: 'Proceed',
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          heightAuto: false, 
+          focusConfirm: false 
+        }).then(() => {
+          window.location.href = "dashboard.html"; 
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Login Failed',
+          text: 'Invalid username or password!',
+          confirmButtonText: 'Try Again',
+          heightAuto: false, 
+          focusConfirm: false 
+        });
+      }
+    });
+  </script>
+</body>
+</html>

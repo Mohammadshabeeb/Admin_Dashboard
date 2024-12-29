@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    </head>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <title>Doctosmart</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/logo.png">
+
+    <body>
+        <!-- SIDEBAR -->
+        <section id="sidebar">
+            <a href="#" class="brand"> <img style="width: 170px; margin: auto; display: block;" src="assets/img/logo.png" alt="" /></a>
+            <ul class="side-menu">
+                <li>
+                    <a href="dashboard.html"><i class="bx bxs-dashboard icon"></i> Dashboard</a>
+                </li>
+                <li>
+                    <a href="bannermanagement.html" class="active"><i class="bx bxs-add-to-queue icon"></i> Banner Management</a>
+                </li>
+                <li>
+                    <a href="productcategory.html"><i class="bx bxs-basket icon"></i> Product Categories</a>
+                </li>
+                <li>
+                    <a href="productmanagement.html"><i class="bx bxs-grid icon"></i> Product Management</a>
+                </li>
+            </ul>
+        </section>
+        <!-- SIDEBAR -->
+
+        <!-- NAVBAR -->
+        <section id="content">
+            <!-- NAVBAR -->
+            <nav>
+                <i class="bx bx-menu toggle-sidebar"></i>
+                <form action="#">
+                    <div class="form-group">
+                        <input type="text" placeholder="Search..." />
+                        <i class="bx bx-search icon"></i>
+                    </div>
+                </form>
+                <div class="moblogo">
+                    <img src="assets/img/logo.png" style="width: 130px;" alt="">
+                </div>
+                <a href="#" class="nav-link">
+                    <i class="bx bxs-bell icon"></i>
+                    <span class="badge">5</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="bx bxs-message-square-dots icon"></i>
+                    <span class="badge">8</span>
+                </a>
+                <span class="divider"></span>
+                <div class="profile">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="" />
+                    <ul class="profile-link">
+                        <li>
+                            <a href="#"><i class="bx bxs-user-circle icon"></i> Profile</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="bx bxs-cog"></i> Settings</a>
+                        </li>
+                        <li>
+                            <a href="login.html"><i class="bx bxs-log-out-circle"></i> Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!-- NAVBAR -->
+
+            <!-- MAIN -->
+            <main>
+                <h1 class="title">Banner Management</h1>
+                <ul class="breadcrumbs">
+                    <li><a href="#">Home</a></li>
+                    <li class="divider">/</li>
+                    <li><a href="bannermanagement.html" class="active">Banner Management</a></li>
+                </ul>
+                <div class="dashboard">
+                    <div class="card">
+                        <div class="banner-management">
+                            <!-- Header Section -->
+                            <header class="header">
+                                <button class="btn-add" id="addBannerBtn">Add New Banner</button>
+                            </header>
+
+                            <div class="banners-grid" id="bannersGrid"></div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <!-- MAIN -->
+        </section>
+
+
+        <footer class="text-center">
+            <p>Copyright © 2024 Doctosmart</p>
+        </footer>
+
+
+
+
+
+        <div class="modal" id="bannerModal">
+            <div class="modal-content">
+                <span class="close-modal" id="closeModal">&times;</span>
+                <h2 id="modalTitle">Edit Banner</h2>
+                <form id="bannerForm">
+                    <div class="form-group">
+                        <label for="bannerTitle">Banner Title</label>
+                        <input type="text" id="bannerTitle" placeholder="Enter banner title" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="bannerDescription">Banner Description</label>
+                        <textarea id="bannerDescription" placeholder="Enter banner description" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="bannerImage">Banner Image</label>
+                        <input type="file" id="bannerImage" accept="image/*" />
+                    </div>
+                    <div class="modal-actions">
+                        <button type="submit" class="btn-save">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <style>
+            .header {
+                display: flex;
+                justify-content: end;
+                align-items: center;
+                padding: 20px;
+                background-color: #fff;
+                border-bottom: 1px solid #ddd;
+                border-radius: 9px;
+                background: aliceblue;
+            }
+
+            .header h1 {
+                margin: 0;
+                font-size: 1.8rem;
+            }
+
+            .btn-add {
+                padding: 10px 20px;
+                background: linear-gradient(90deg, rgb(39, 108, 199), rgb(6, 212, 95) 100%);
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .btn-add:hover {
+                background: linear-gradient(90deg, rgb(39, 108, 199), rgb(6, 212, 95) 100%);
+            }
+
+            /* Banner Grid */
+            .banners-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+                padding: 20px;
+            }
+
+            .banner-item {
+                background: #fff;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                transition: transform 0.2s ease;
+            }
+
+            .banner-item:hover {
+                transform: translateY(-5px);
+            }
+
+            .banner-image {
+                width: 100%;
+                height: 300px;
+                object-fit: cover;
+            }
+
+            .banner-details {
+                padding: 15px;
+            }
+
+            .banner-title {
+                margin: 0;
+                font-size: 1.2rem;
+                color: #333;
+            }
+
+            .banner-description {
+                margin: 10px 0 0;
+                font-size: 0.9rem;
+                color: #555;
+            }
+
+            .banner-actions {
+                display: flex;
+                justify-content: flex-end;
+                padding: 10px 15px;
+                background: #f4f4f9;
+                border-top: 1px solid #ddd;
+            }
+
+            .banner-actions button {
+                padding: 8px 15px;
+                margin-left: 10px;
+                font-size: 0.9rem;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            .btn-edit {
+                color: #fff;
+                border-radius: 6px;
+
+                background: rgb(47, 226, 131);
+            }
+
+            .btn-edit:hover {
+                background: rgb(47, 226, 131);
+            }
+
+            .btn-delete {
+                border-radius: 6px;
+                color: #fff;
+                background: rgb(206, 7, 34);
+            }
+
+            .btn-delete:hover {
+                color: #fff;
+                border-radius: 6px;
+
+                background: rgb(206, 7, 34);
+            }
+            /* Modal Styles */
+            .modal {
+                display: none; /* Hidden by default */
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+            }
+
+            @media screen and (max-width: 767px) {
+                .banners-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+
+        <script src="assets/js/script.js"></script>
+        <script>
+            // Selectors
+            const bannersGrid = document.getElementById("bannersGrid");
+            const bannerModal = document.getElementById("bannerModal");
+            const closeModal = document.getElementById("closeModal");
+            const bannerForm = document.getElementById("bannerForm");
+            const modalTitle = document.getElementById("modalTitle");
+            const bannerTitleInput = document.getElementById("bannerTitle");
+            const bannerDescriptionInput = document.getElementById("bannerDescription");
+            const bannerImageInput = document.getElementById("bannerImage");
+            const addBannerBtn = document.getElementById("addBannerBtn");
+
+            // Banner Data
+            let banners = [
+                {
+                    id: 1,
+                    title: "Sample Banner Title",
+                    description: "This is a sample description for the banner.",
+                    image: "assets/img/img1.jpg",
+                },
+                {
+                    id: 2,
+                    title: "Sample Banner Title",
+                    description: "This is a sample description for the banner.",
+                    image: "assets/img/img2.jpg",
+                },
+                {
+                    id: 3,
+                    title: "Sample Banner Title",
+                    description: "This is a sample description for the banner.",
+                    image: "assets/img/img3.jpg",
+                },
+                {
+                    id: 4,
+                    title: "Sample Banner Title",
+                    description: "This is a sample description for the banner.",
+                    image: "assets/img/img4.png",
+                },
+            ];
+
+            // Current Editing Banner
+            let currentBannerId = null;
+
+            // Function to Render Banners
+            function renderBanners() {
+                bannersGrid.innerHTML = "";
+                banners.forEach((banner) => {
+                    const bannerItem = document.createElement("div");
+                    bannerItem.className = "banner-item";
+                    bannerItem.dataset.id = banner.id;
+                    bannerItem.innerHTML = `
+                <img src="${banner.image}" alt="Banner Image" class="banner-image">
+                <div class="banner-details">
+                  <h2 class="banner-title">${banner.title}</h2>
+                  <p class="banner-description">${banner.description}</p>
+                </div>
+                <div class="banner-actions">
+                  <button class="btn-edit" onclick="editBanner(${banner.id})">Edit</button>
+                  <button class="btn-delete" onclick="deleteBanner(${banner.id})">Delete</button>
+                </div>
+              `;
+                    bannersGrid.appendChild(bannerItem);
+                });
+            }
+
+            // Function to Open Modal
+            function openModal(title) {
+                modalTitle.textContent = title;
+                bannerModal.style.display = "flex";
+            }
+
+            // Function to Close Modal
+            function closeModalHandler() {
+                bannerModal.style.display = "none";
+                bannerForm.reset();
+                currentBannerId = null;
+            }
+
+            // Function to Handle Form Submission
+            bannerForm.addEventListener("submit", (event) => {
+                event.preventDefault();
+                const title = bannerTitleInput.value;
+                const description = bannerDescriptionInput.value;
+                const image = bannerImageInput.files[0] ? URL.createObjectURL(bannerImageInput.files[0]) : null;
+
+                if (currentBannerId) {
+                    // Edit Banner
+                    const bannerIndex = banners.findIndex((b) => b.id === currentBannerId);
+                    if (bannerIndex > -1) {
+                        banners[bannerIndex] = {
+                            ...banners[bannerIndex],
+                            title,
+                            description,
+                            image: image || banners[bannerIndex].image,
+                        };
+                    }
+                } else {
+                    // Add New Banner
+                    const newBanner = {
+                        id: Date.now(),
+                        title,
+                        description,
+                        image: image || "https://via.placeholder.com/300x150",
+                    };
+                    banners.push(newBanner);
+                }
+
+                renderBanners();
+                closeModalHandler();
+            });
+
+            function editBanner(id) {
+                const banner = banners.find((b) => b.id === id);
+                if (banner) {
+                    currentBannerId = id;
+                    bannerTitleInput.value = banner.title;
+                    bannerDescriptionInput.value = banner.description;
+                    openModal("Edit Banner");
+                }
+            }
+
+            function deleteBanner(id) {
+                if (confirm("Are you sure you want to delete this banner?")) {
+                    banners = banners.filter((b) => b.id !== id);
+                    renderBanners();
+                }
+            }
+
+            addBannerBtn.addEventListener("click", () => openModal("Add New Banner"));
+            closeModal.addEventListener("click", closeModalHandler);
+            window.addEventListener("click", (event) => {
+                if (event.target === bannerModal) closeModalHandler();
+            });
+
+            renderBanners();
+        </script>
+    </body>
+</html>
